@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Mis 15 Años · Giannina | Invitación Real</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================
+       COLOR PALETTE & DESIGN TOKENS
+       ========================================= */
+    :root {
+      --night: #050d26;
+      --navy: #0b1e4d;
+      --royal: #16408f;
+      --gold: #d4af37;
+      --gold2: #f7e4a2;
+      --goldd: #8a6a1c;
+      --ink: #e9f0ff;
+      --foil: linear-gradient(100deg, #8a6a1c, #f7e4a2 28%, #d4af37 48%, #fff3c4 62%, #b8902a 82%, #f1d77c);
+      --script: 'Great Vibes', 'Brush Script MT', cursive;
+      --caps: 'Cinzel', Georgia, serif;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Montserrat', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--night);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 20px;
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+
+    /* =========================================
+       FONDO DE LA INVITACIÓN: VIDEO EN BUCLE MÁGICO
+       ========================================= */
+    .bg-video-wrapper {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+      background: #050d26;
+    }
+
+    .bg-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      pointer-events: none;
+      opacity: 0.95;
+    }
+
+    .bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 25%, rgba(6, 17, 48, 0.45) 0, rgba(3, 8, 26, 0.75) 75%);
+      pointer-events: none;
+    }
+
+
+
+    /* =========================================
+       INTRO STAGE: VIDEO PRESENTACIÓN 1080P
+       ========================================= */
+    #intro {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #020614;
+      transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), visibility 1.2s;
+      overflow: hidden;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    #intro.gone {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+      box-shadow: 0 0 60px rgba(0, 0, 0, 0.95);
+    }
+
+    #introVideo {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      background: #000;
+    }
+
+    @media (max-width: 540px) {
+      #introVideo {
+        object-fit: cover;
+      }
+    }
+
+    /* Overlay inicial antes del toque: Solo texto limpio "TOCA PARA ABRIR" */
+    .video-prompt {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding-bottom: min(15vh, 125px);
+      background: transparent;
+      pointer-events: none;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+      z-index: 10;
+    }
+
+    .video-prompt.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .tap-text {
+      font: 700 15px var(--caps);
+      letter-spacing: 0.38em;
+      color: var(--gold2);
+      text-shadow: 0 2px 10px #000, 0 0 20px rgba(212, 175, 55, 0.85);
+      animation: tapPulse 2s ease-in-out infinite;
+      user-select: none;
+    }
+
+    @keyframes tapPulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.85;
+      }
+      50% {
+        transform: scale(1.05);
+        opacity: 1;
+        text-shadow: 0 2px 12px #000, 0 0 30px rgba(247, 228, 162, 0.95);
+      }
+    }
+
+    /* =========================================
+       MAIN INVITATION WRAPPER
+       ========================================= */
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 480px;
+      margin: 0 auto;
+      background: linear-gradient(180deg, #0b1e4dcc, #081638b0 40%, #0b1e4dcc);
+      box-shadow: 0 0 60px rgba(0, 0, 0, 0.7);
+    }
+
+    .foil {
+      background: var(--foil);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      animation: shine 6s linear infinite;
+    }
+
+    .script {
+      font-family: var(--script);
+      font-weight: 400;
+    }
+
+    .caps {
+      font-family: var(--caps);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    section {
+      padding: 50px 24px;
+      text-align: center;
+      position: relative;
+    }
+
+    .orn {
+      display: block;
+      width: 210px;
+      height: 22px;
+      margin: 16px auto;
+    }
+
+    .frame {
+      position: relative;
+      border: 1.5px solid var(--gold);
+      border-radius: 8px;
+      padding: 38px 24px;
+      background: linear-gradient(160deg, #10285f99, #07143899);
+      box-shadow: 0 0 0 5px #07143899, 0 0 0 6.5px #d4af3766, 0 20px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    .frame > .c {
+      position: absolute;
+      width: 46px;
+      height: 46px;
+      color: var(--gold);
+    }
+    .c.tl { top: 4px; left: 4px; }
+    .c.tr { top: 4px; right: 4px; transform: scaleX(-1); }
+    .c.bl { bottom: 4px; left: 4px; transform: scaleY(-1); }
+    .c.br { bottom: 4px; right: 4px; transform: scale(-1); }
+
+    h2.t {
+      font-family: var(--script);
+      font-weight: 400;
+      font-size: 48px;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 13px 34px;
+      border: 0;
+      border-radius: 40px;
+      cursor: pointer;
+      text-decoration: none;
+      font: 700 13px var(--caps);
+      letter-spacing: 0.2em;
+      color: #2b1d00;
+      background: var(--foil);
+      background-size: 200% 100%;
+      box-shadow: 0 0 0 1px #fff3c4 inset, 0 6px 18px rgba(212, 175, 55, 0.35);
+      animation: shine 6s linear infinite;
+      transition: transform 0.2s;
+    }
+
+    .btn:active {
+      transform: translateY(2px);
+    }
+
+    .gold {
+      color: var(--gold2);
+    }
+
+    /* =========================================
+       HERO SECTION: FOTO Y LETRERO DESPEJADO
+       ========================================= */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px 30px 20px;
+      overflow: hidden;
+    }
+
+    .mini {
+      font: 600 13px var(--caps);
+      letter-spacing: 0.4em;
+      color: var(--gold2);
+      margin-bottom: 14px;
+    }
+
+    /* Marco de la foto 4K */
+    .arch {
+      position: relative;
+      z-index: 1;
+      width: 82%;
+      max-width: 310px;
+      aspect-ratio: 0.72;
+      margin: 10px auto 30px auto; /* Espacio limpio para que el recuadro azul nunca tape el letrero */
+      border-radius: 999px 999px 12px 12px;
+      border: 2px solid var(--gold);
+      padding: 8px;
+      box-shadow: 0 0 0 6px #07143899, 0 0 0 7.5px #d4af3777, 0 0 50px rgba(74, 134, 232, 0.4);
+    }
+
+    .arch .in {
+      position: absolute;
+      inset: 8px;
+      border-radius: 999px 999px 8px 8px;
+      overflow: hidden;
+      background: #071638;
+    }
+
+    .arch img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 10%;
+      display: block;
+    }
+
+    /* Letrero Mis XV Años: AL FRENTE (z-index: 100) */
+    .hero-t {
+      font-family: var(--script);
+      font-size: 82px;
+      line-height: 1.15;
+      margin-top: 16px;
+      margin-bottom: 6px;
+      position: relative;
+      z-index: 100 !important; /* Traído al frente absoluto */
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.8));
+    }
+
+    .hero-t small {
+      display: block;
+      font-size: 38px;
+      line-height: 1;
+      margin-bottom: 2px;
+      position: relative;
+      z-index: 100 !important;
+    }
+
+    .name {
+      font: 700 24px var(--caps);
+      letter-spacing: 0.35em;
+      margin-top: 6px;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 100 !important;
+    }
+
+    .scrl {
+      margin-top: 26px;
+      font: 500 12px var(--caps);
+      letter-spacing: 0.35em;
+      color: var(--gold2);
+      animation: float 2s infinite;
+    }
+
+    /* =========================================
+       COUNTDOWN SECTION & RELOJ
+       ========================================= */
+    .cd {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 22px 0 10px;
+    }
+
+    .cd div {
+      width: 74px;
+      padding: 14px 0 10px;
+      border: 1px solid rgba(212, 175, 55, 0.6);
+      border-radius: 10px;
+      background: linear-gradient(#16408f66, #05102e99);
+      box-shadow: 0 0 18px rgba(74, 134, 232, 0.25) inset;
+    }
+
+    .cd b {
+      display: block;
+      font: 700 32px/1 var(--caps);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .cd i {
+      display: block;
+      margin-top: 6px;
+      font: 500 10px var(--caps);
+      letter-spacing: 0.2em;
+      color: var(--gold2);
+      font-style: normal;
+      text-transform: uppercase;
+    }
+
+    /* Reloj Dinámico Animado */
+    .clock {
+      width: 140px;
+      margin: 22px auto 0;
+      filter: drop-shadow(0 0 16px rgba(212, 175, 55, 0.45));
+    }
+
+    .hand {
+      transform-origin: 60px 60px;
+      animation: spin 60s linear infinite;
+    }
+
+    .hand.h {
+      animation-duration: 720s;
+    }
+
+    /* =========================================
+       TEXT & PARENTS (NO OVERLAPPING)
+       ========================================= */
+    .txt {
+      font-style: italic;
+      font-size: 22px;
+      color: #eaf1ff;
+      line-height: 1.6;
+    }
+
+    .parents-box {
+      margin: 14px 0;
+    }
+
+    .parent {
+      font: 700 22px var(--caps);
+      letter-spacing: 0.16em;
+      margin: 4px 0;
+      color: #ffffff;
+      line-height: 1.3;
+    }
+
+    .amp {
+      font-family: var(--script);
+      font-size: 42px;
+      line-height: 1;
+      display: block;
+      margin: 2px 0;
+    }
+
+    .slipper-img-wrap {
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 22px 0 12px 0;
+      border: 1px solid var(--gold);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+      aspect-ratio: 16 / 10;
+    }
+
+    .slipper-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    
+    /* RSVP Guest Name Input */
+    .rsvp-input-wrapper {
+      max-width: 320px;
+      margin: 0 auto 16px auto;
+    }
+    .rsvp-input {
+      width: 100%;
+      padding: 13px 18px;
+      border-radius: 30px;
+      border: 1.5px solid var(--gold);
+      background: rgba(7, 20, 56, 0.9);
+      color: #ffffff;
+      font-family: var(--serif);
+      font-size: 19px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(212, 175, 55, 0.15);
+      outline: none;
+      transition: all 0.3s ease;
+    }
+    .rsvp-input:focus {
+      border-color: #ffe4a0;
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.5), inset 0 0 12px rgba(212, 175, 55, 0.25);
+      background: rgba(11, 28, 72, 0.95);
+    }
+    .rsvp-input::placeholder {
+      color: rgba(247, 228, 162, 0.65);
+      font-size: 16px;
+      font-style: italic;
+    }
+
+    /* =========================================
+       DATE & RECEPTION
+       ========================================= */
+    .date {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 14px;
+      margin: 6px 0;
+    }
+
+    .date span {
+      font: 700 14px var(--caps);
+      letter-spacing: 0.3em;
+      padding: 6px 0;
+      border-block: 1px solid var(--gold);
+      color: var(--gold2);
+      text-transform: uppercase;
+    }
+
+    .date strong {
+      font: 700 86px/1 var(--caps);
+    }
+
+    .mon {
+      font: 700 24px var(--caps);
+      letter-spacing: 0.5em;
+      margin: 6px 0 4px;
+      text-transform: uppercase;
+    }
+
+    .rec h3 {
+      font-family: var(--script);
+      font-weight: 400;
+      font-size: 46px;
+    }
+
+    .carriage-img-wrap {
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 18px 0;
+      border: 1px solid var(--gold);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+      aspect-ratio: 16 / 10;
+    }
+
+    .carriage-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .rec .cas2 {
+      width: 80px;
+      margin: 0 auto 4px;
+      color: var(--gold);
+    }
+
+    .ico {
+      width: 52px;
+      margin: 0 auto 8px;
+      display: block;
+      color: var(--gold);
+    }
+
+    .finale {
+      width: min(68%, 240px);
+      aspect-ratio: 0.68;
+      margin: 22px auto 0;
+      position: relative;
+    }
+
+    /* Scroll reveal class */
+    .rv {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 1s, transform 1s;
+    }
+
+    .rv.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    @keyframes shine {
+      to { background-position: -200% 0; }
+    }
+    @keyframes float {
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes pulse {
+      50% { transform: scale(1.08); opacity: 0.85; }
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+      .rv { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fondo de Video en Bucle Mágico (Castillo & Lluvia de Estrellas) -->
+  <div class="bg-video-wrapper" aria-hidden="true">
+    <video id="bgVideo" autoplay muted loop playsinline preload="auto" poster="assets/video_poster.jpg">
+      <source src="assets/bg_video.mp4" type="video/mp4">
+    </video>
+    <div class="bg-overlay"></div>
+  </div>
+
+  <!-- Hidden Disney Cinderella Waltz Music Track -->
+  <audio id="cinderellaAudio" preload="auto" loop>
+    <source src="assets/music.mp3" type="audio/mp3">
+  </audio>
+
+
+
+  <!-- SVG Global Definitions -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="gd" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#8a6a1c"/>
+        <stop offset="40%" stop-color="#f7e4a2"/>
+        <stop offset="70%" stop-color="#d4af37"/>
+        <stop offset="100%" stop-color="#8a6a1c"/>
+      </linearGradient>
+      
+      <!-- Corner Flourish -->
+      <symbol id="corner" viewBox="0 0 46 46">
+        <path d="M2 44V14C2 7 7 2 14 2h30M8 38V16c0-5 3-8 8-8h22M14 30V20c0-3 2-5 5-5h14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="14" cy="14" r="2.6" fill="currentColor"/>
+      </symbol>
+
+      <!-- Royal Divider -->
+      <symbol id="div" viewBox="0 0 210 22">
+        <path d="M0 11h84M126 11h84" stroke="url(#gd)" stroke-width="1.2"/>
+        <path d="M105 2l9 9-9 9-9-9z" fill="url(#gd)"/>
+        <circle cx="90" cy="11" r="2.4" fill="#d4af37"/>
+        <circle cx="120" cy="11" r="2.4" fill="#d4af37"/>
+      </symbol>
+
+      <!-- Cinderella Castle Silhouette -->
+      <symbol id="castle" viewBox="0 0 200 120">
+        <path fill="currentColor" d="M0 120V92h14V70l5-12 5 12v22h10V50l6-14 6 14v42h8V60h10V30l8-24 8 24v30h10V40l7-22 7 22v52h8V70l6-10 6 10v22h12V50l6-14 6 14v42h10V72l5-14 5 14v20h14v28z"/>
+        <path d="M96 6V0m0 0l12 3-12 3" stroke="currentColor" fill="currentColor"/>
+      </symbol>
+
+      <!-- Crystal Glass Slipper Vector -->
+      <symbol id="slip" viewBox="0 0 120 80">
+        <path d="M10 14c8-2 14 0 18 6 4 10 14 12 28 12 18 0 30 10 36 22 4 8-2 14-10 14H44c-14 0-26-8-32-22C6 34 4 20 10 14z" fill="#d7ecff" fill-opacity=".35" stroke="#eaf6ff" stroke-width="2"/>
+        <path d="M62 72l6 8M24 30c10 6 22 8 34 8" stroke="#fff" stroke-width="1.5" fill="none" opacity=".8"/>
+        <path d="M96 56l10 18" stroke="#eaf6ff" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="30" cy="28" r="2" fill="#fff"/>
+        <circle cx="70" cy="48" r="1.6" fill="#fff"/>
+      </symbol>
+
+      <!-- Envelope Gift Icon -->
+      <symbol id="env2" viewBox="0 0 60 44">
+        <rect x="2" y="4" width="56" height="38" rx="3" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M2 8l28 20L58 8" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="30" cy="28" r="4" fill="currentColor"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- =========================================
+       INTRO: VIDEO PRESENTACIÓN REAL DE MIS 15 AÑOS
+       ========================================= -->
+  <div id="intro">
+    <div class="video-container">
+      <video id="introVideo" muted playsinline preload="auto" poster="assets/video_poster.jpg">
+        <source src="assets/intro_video_1080p.mp4" type="video/mp4">
+        Tu navegador no soporta video HTML5.
+      </video>
+
+      <!-- Overlay inicial: Solo "TOCA PARA ABRIR" en la posición de apertura -->
+      <div id="videoPrompt" class="video-prompt">
+        <p class="tap-text">TOCA PARA ABRIR</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================
+       CONTENIDO PRINCIPAL DE LA INVITACIÓN
+       ========================================= -->
+  <main class="wrap">
+    
+    <!-- Hero con Imagen Real 4K de la Princesa (Espaciado y al frente) -->
+    <section id="hero">
+      <p class="mini rv">TE INVITO A CELEBRAR</p>
+      
+      <div class="arch rv">
+        <div class="in">
+          <img src="assets/giannina_hero.jpg" alt="Giannina - Mis XV Años">
+        </div>
+      </div>
+
+      <h1 class="hero-t rv">
+        <small class="foil">Mis</small>
+        <span class="foil">15 Años</span>
+      </h1>
+      
+      <p class="name foil rv" id="nombre">Giannina</p>
+      <p class="scrl">DESLIZA ↓</p>
+    </section>
+
+    <!-- Contador Regresivo Real & Reloj -->
+    <section>
+      <svg class="orn"><use href="#div"/></svg>
+      <p class="caps gold rv" style="font-size:13px">Nuestra celebración llegará en</p>
+      
+      <!-- Contador de Días, Horas, Minutos, Segundos exactos -->
+      <div class="cd rv" id="cd">
+        <div><b class="foil">--</b><i>Días</i></div>
+        <div><b class="foil">--</b><i>Horas</i></div>
+        <div><b class="foil">--</b><i>Min</i></div>
+        <div><b class="foil">--</b><i>Seg</i></div>
+      </div>
+
+      <!-- Reloj de Gala -->
+      <svg class="clock rv" viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r="56" fill="#07143a" stroke="url(#gd)" stroke-width="3"/>
+        <circle cx="60" cy="60" r="50" fill="none" stroke="#d4af3788"/>
+        <g fill="#f7e4a2" font-family="Cinzel,serif" font-size="11" text-anchor="middle">
+          <text x="60" y="22">XII</text>
+          <text x="99" y="64">III</text>
+          <text x="60" y="104">VI</text>
+          <text x="21" y="64">IX</text>
+        </g>
+        <line class="hand h" x1="60" y1="60" x2="60" y2="34" stroke="#f7e4a2" stroke-width="3" stroke-linecap="round"/>
+        <line class="hand" x1="60" y1="60" x2="60" y2="22" stroke="#d4af37" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="60" cy="60" r="4" fill="url(#gd)"/>
+      </svg>
+
+      <svg class="orn" style="margin-top:34px"><use href="#div"/></svg>
+    </section>
+
+    <!-- Mensaje Emotivo -->
+    <section>
+      <div class="frame rv">
+        <svg class="c tl"><use href="#corner"/></svg>
+        <svg class="c tr"><use href="#corner"/></svg>
+        <svg class="c bl"><use href="#corner"/></svg>
+        <svg class="c br"><use href="#corner"/></svg>
+        
+        <p class="txt">Con la bendición de Dios y el amor que mi familia me ha dado, me siento feliz de llegar a este momento de mi vida: el día que dejaré atrás mi infancia y comenzaré un nuevo viaje.</p>
+        <svg class="orn"><use href="#div"/></svg>
+        <p class="txt">Porque son parte de mi vida, es mi deseo que compartan conmigo la alegría de mis quince años…</p>
+      </div>
+    </section>
+
+    <!-- Sección Padres con Zapatilla de Cristal en 4K -->
+    <section>
+      <h2 class="t foil rv">Mis Padres</h2>
+      <div class="parents-box rv">
+        <p class="parent">Gianny Pérez</p>
+        <p class="amp foil">y</p>
+        <p class="parent">Mónica Reyes</p>
+      </div>
+
+      <!-- Imagen Real 4K: Zapatilla de Cristal -->
+      <div class="slipper-img-wrap rv">
+        <img src="assets/opt_glass_slipper.jpg" alt="Zapatilla de Cristal Real">
+      </div>
+
+      <svg class="orn"><use href="#div"/></svg>
+      <p class="txt rv">Tienen el honor de invitarlos a compartir la celebración de los quince años de su hija.</p>
+    </section>
+
+    <!-- Fecha & Recepción con Carroza Dorada 4K -->
+    <section>
+      <div class="date rv">
+        <span id="dow">Sábado</span>
+        <strong class="foil" id="dnum">19</strong>
+        <span id="yr">2026</span>
+      </div>
+      <p class="mon foil rv" id="mon">Diciembre</p>
+
+      <div class="frame rec rv" style="margin-top:34px;border-radius:999px 999px 8px 8px;padding-top:38px">
+        <svg class="cas2" viewBox="0 0 200 120"><use href="#castle"/></svg>
+        <h3 class="foil">Recepción</h3>
+        
+        <!-- Imagen Real 4K: Carroza Dorada de Cenicienta -->
+        <div class="carriage-img-wrap">
+          <img src="assets/opt_golden_carriage.jpg" alt="Carroza Dorada Real de Cenicienta">
+        </div>
+
+        <p style="font-size:22px;margin:8px 0 4px">Horario: <b class="gold">7:00 pm</b></p>
+        <p style="font-size:22px">Calle 20 #11-51 <b class="gold">San José</b></p>
+        
+        <a class="btn" id="map" href="https://maps.google.com/?q=Calle+20+%2311-51+San+Jose" target="_blank" rel="noopener">CÓMO LLEGAR</a>
+      </div>
+    </section>
+
+    <!-- Código de Vestimenta -->
+    <section>
+      <div class="frame rv">
+        <svg class="c tl"><use href="#corner"/></svg>
+        <svg class="c tr"><use href="#corner"/></svg>
+        <svg class="c bl"><use href="#corner"/></svg>
+        <svg class="c br"><use href="#corner"/></svg>
+        
+        <h2 class="t foil" style="font-size:42px">Código de Vestimenta</h2>
+        <p style="font-size:22px">Traje Formal / De Gala</p>
+        <p style="font-size:20px;margin-top:6px">Se reserva el color <b class="gold">Azul Noche</b> exclusivamente para la Quinceañera.</p>
+      </div>
+    </section>
+
+    <!-- Lluvia de Sobres -->
+    <section>
+      <div class="frame rv">
+        <svg class="c tl"><use href="#corner"/></svg>
+        <svg class="c tr"><use href="#corner"/></svg>
+        <svg class="c bl"><use href="#corner"/></svg>
+        <svg class="c br"><use href="#corner"/></svg>
+        
+        <svg class="ico" viewBox="0 0 60 44"><use href="#env2"/></svg>
+        <h2 class="t foil" style="font-size:38px;margin-bottom:6px">Lluvia de Sobres o Regalo</h2>
+        <p class="txt" style="font-size:21px">Tu presencia es el más bello regalo. Si deseas tener un detalle o una lluvia de sobres, lo sabré apreciar con el corazón.</p>
+      </div>
+    </section>
+
+    <!-- Confirmación de Asistencia WhatsApp -->
+    <section>
+      <div class="frame rv">
+        <svg class="c tl"><use href="#corner"/></svg>
+        <svg class="c tr"><use href="#corner"/></svg>
+        <svg class="c bl"><use href="#corner"/></svg>
+        <svg class="c br"><use href="#corner"/></svg>
+        
+        <h2 class="t foil" style="font-size:42px">Confirmar tu Asistencia</h2>
+        <p style="font-size:20px;margin-bottom:14px">Por favor escribe tu nombre para registrarte en la lista real:</p>
+        <div class="rsvp-input-wrapper">
+          <input type="text" id="guestNameInput" class="rsvp-input" placeholder="Tu nombre y apellido aquí..." autocomplete="name">
+        </div>
+        <button class="btn" id="waBtn" onclick="sendWhatsAppConfirmation()">CONFIRMAR</button>
+      </div>
+
+      <p class="script foil rv" style="font-size:62px;margin:34px 0 0">¡Te esperamos!</p>
+      <div class="arch finale rv">
+        <div class="in">
+          <img src="assets/giannina_hero.jpg" alt="Giannina Princesa">
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================
+       JAVASCRIPT: APERTURA EXACTA, MÚSICA & EFECTOS
+       ========================================= -->
+  <script>
+    /* Configuración del Evento: Sábado 19 de Diciembre de 2026 a las 7:00 PM */
+    var CFG = {
+      nombre: "Giannina",
+      fecha: "2026-12-19T19:00:00",
+      whatsapp: "573013329193",
+      mapa: "https://maps.google.com/?q=Calle+20+%2311-51+San+Jose"
+    };
+
+    var d = new Date(CFG.fecha);
+    var D = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+    var M = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+    var $ = function(i) { return document.getElementById(i); };
+
+    // Asignar datos del evento con verificación defensiva
+    if ($("nombre")) $("nombre").textContent = CFG.nombre;
+    if ($("dow")) $("dow").textContent = D[d.getDay()];
+    if ($("dnum")) $("dnum").textContent = d.getDate();
+    if ($("mon")) $("mon").textContent = M[d.getMonth()];
+    if ($("yr")) $("yr").textContent = d.getFullYear();
+    if ($("map")) $("map").href = CFG.mapa;
+
+    // Confirmación de Asistencia por WhatsApp solicitando el Nombre del Invitado
+    function sendWhatsAppConfirmation() {
+      var input = $("guestNameInput");
+      var guestName = input ? input.value.trim() : "";
+      if (!guestName) {
+        alert("¡Hola! Por favor escribe tu nombre y apellido en el recuadro para registrar tu asistencia a los XV de Giannina.");
+        if (input && input.focus) input.focus();
+        return;
+      }
+      var text = "¡Hola! Soy " + guestName + " y confirmo con mucha alegría mi asistencia a los XV Años de Giannina. ✨👑";
+      var url = "https://wa.me/" + CFG.whatsapp + "?text=" + encodeURIComponent(text);
+      window.open(url, "_blank");
+    }
+
+    var guestInput = $("guestNameInput");
+    if (guestInput) {
+      guestInput.addEventListener("keydown", function(e) {
+        if (e.key === "Enter") {
+          sendWhatsAppConfirmation();
+        }
+      });
+    }
+
+    // Cuenta regresiva exacta y robusta
+    var cb = document.querySelectorAll("#cd b");
+    function tick() {
+      var s = Math.max(0, Math.floor((d - new Date()) / 1000));
+      var v = [
+        Math.floor(s / 86400),
+        Math.floor((s % 86400) / 3600),
+        Math.floor((s % 3600) / 60),
+        s % 60
+      ];
+      v.forEach(function(n, i) {
+        if (cb[i]) cb[i].textContent = String(n).padStart(2, "0");
+      });
+    }
+    tick();
+    setInterval(tick, 1000);
+
+
+
+    // =========================================
+    // VIDEO INTRO PRESENTACIÓN & MÚSICA
+    // =========================================
+    var video = $("introVideo");
+    var intro = $("intro");
+    var promptEl = $("videoPrompt");
+    var audio = $("cinderellaAudio");
+    var bgVideo = $("bgVideo");
+
+    var introStarted = false;
+    var introFinished = false;
+    var watchdogTimer = null;
+
+    // Toque inicial: Inicia el video de presentación.
+    // Es obligatorio ver la intro completa (no se puede saltar al volver a tocar).
+    function handleIntroTap(e) {
+      if (e) {
+        try { e.stopPropagation(); } catch(err) {}
+      }
+
+      if (!introStarted) {
+        introStarted = true;
+        startIntroPresentation();
+      }
+      // Si ya inició, no se hace nada: la intro se visualiza completa de principio a fin.
+    }
+
+    function startIntroPresentation() {
+      // Ocultar texto "TOCA PARA ABRIR"
+      if (promptEl) promptEl.classList.add("hidden");
+
+      // Iniciar el vals real de Cenicienta
+      if (audio) {
+        var p = audio.play();
+        if (p !== undefined) {
+          p.catch(function(err) {
+            console.log("Audio autoplay policy note:", err);
+          });
+        }
+      }
+
+      // Iniciar también el video de fondo en bucle en segundo plano
+      if (bgVideo && bgVideo.paused) {
+        bgVideo.play().catch(function(e) {});
+      }
+
+      // Temporizador guardián (a los 9.5s para un video de 8.5s como garantía)
+      watchdogTimer = setTimeout(function() {
+        finishIntro();
+      }, 9500);
+
+      // Reproducir video de presentación
+      if (video) {
+        video.muted = true;
+        var vp = video.play();
+        if (vp !== undefined) {
+          vp.catch(function(err) {
+            console.log("Video play note:", err);
+            setTimeout(function() {
+              if (!introFinished) {
+                video.muted = true;
+                video.play().catch(function(e) {});
+              }
+            }, 80);
+          });
+        }
+      } else {
+        finishIntro();
+      }
+    }
+
+    function finishIntro() {
+      if (introFinished) return;
+      introFinished = true;
+
+      // Limpiar temporizador watchdog
+      if (watchdogTimer) clearTimeout(watchdogTimer);
+
+      // Pausar video de presentación
+      if (video && !video.paused) {
+        try { video.pause(); } catch(e) {}
+      }
+
+      // Desvanecer la pantalla de presentación suavemente
+      if (intro) intro.classList.add("gone");
+
+      // Asegurar que el video de fondo en bucle esté corriendo
+      if (bgVideo && bgVideo.paused) {
+        bgVideo.play().catch(function(e) {});
+      }
+
+      // Asegurar que la música siga sonando de fondo
+      if (audio && audio.paused) {
+        audio.play().catch(function(e) {});
+      }
+    }
+
+    // El video avanza automáticamente al terminar sus 8.5s exactos
+    if (video) {
+      video.addEventListener("ended", finishIntro);
+      video.addEventListener("timeupdate", function() {
+        if (video.duration && video.duration > 4 && video.currentTime >= video.duration - 0.25) {
+          finishIntro();
+        }
+      });
+    }
+
+    // Asignar el listener de toque de forma única
+    if (intro) {
+      intro.onclick = handleIntroTap;
+    }
+
+    // Scroll Reveal
+    var io = new IntersectionObserver(function(es) {
+      es.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.add("in");
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".rv").forEach(function(el) { io.observe(el); });
+  </script>
+</body>
+</html>
